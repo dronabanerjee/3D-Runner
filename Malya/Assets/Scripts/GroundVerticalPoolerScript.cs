@@ -26,6 +26,7 @@ public class GroundVerticalPoolerScript : MonoBehaviour
         for(int i=0; i<pooledAmount; i++)
         {
             GameObject newObject = (GameObject)Instantiate(pooledObject);
+            //newObject.tag = "terrain";
             newObject.SetActive(false);
             pooledObjects.Add(newObject);
 
