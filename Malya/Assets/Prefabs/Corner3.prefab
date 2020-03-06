@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 9174915997533083462}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,11 +244,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9174915997533083464}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 9.855374, z: 1}
+  m_Center: {x: 3.0884706e-15, y: 4.427688, z: -1.1499443e-13}
 --- !u!1 &9174915997583329262
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 9174915997791375983}
   m_Layer: 0
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: fence
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -413,11 +413,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9174915997791375953}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 13.57616, z: 1}
+  m_Center: {x: -5.0576274e-15, y: 6.2880816, z: 6.378602e-13}
 --- !u!1 &9174915998160563101
 GameObject:
   m_ObjectHideFlags: 0

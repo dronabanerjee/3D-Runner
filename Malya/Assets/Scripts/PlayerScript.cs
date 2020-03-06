@@ -10,6 +10,8 @@ public class PlayerScript : MonoBehaviour
     bool jumping;
     int turn;
 
+    float colHeight, colRadius, colCenterY, colCenterZ;
+
     Rigidbody rb;
     Animator animator;
 
@@ -52,6 +54,8 @@ public class PlayerScript : MonoBehaviour
 
                 animator.SetBool("idle", false);
                 startImage.enabled = false;
+
+                ScoreManagerScript.current.StartScore();
             }
         }
         else
@@ -145,7 +149,46 @@ public class PlayerScript : MonoBehaviour
 
     void Slide()
     {
+        animator.SetTrigger("slide");
 
+        CapsuleCollider coll = gameObject.GetComponent<CapsuleCollider>();
+
+        //saving values
+        colHeight = coll.height;
+        colRadius = coll.radius;
+        colCenterY = coll.center.y;
+        colCenterZ = coll.center.z;
+
+        //modify values
+        coll.height = 0.8f;
+        coll.radius = 0.68f;
+        coll.center = new Vector3(0, 0.62f, 0.47f);
+
+        Invoke("ExitSlide", 1.5f);
+    }
+
+    void ExitSlide()
+    {
+        CapsuleCollider coll = gameObject.GetComponent<CapsuleCollider>();
+
+        //resetting values
+        coll.height = colHeight;
+        coll.radius = colRadius;
+        coll.center = new Vector3(0, colCenterY, colCenterZ);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "obstacle")
+        {
+            animator.SetTrigger("fall1");
+            ScoreManagerScript.current.StopScore();
+        }
+        else if (other.gameObject.tag == "fence")
+        {
+            animator.SetTrigger("fall2");
+            ScoreManagerScript.current.StopScore();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

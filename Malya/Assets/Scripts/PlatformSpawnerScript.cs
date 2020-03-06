@@ -416,7 +416,28 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
 
-        //horizontal platform with obstacle...TODO
+        //horizontal platform with obstacle
+        pos = lastPos;
+        pos.x += size;
+        lastPos = new Vector3(pos.x - 0.2f, pos.y, pos.z);
+
+        int rand = Random.Range(0, 2);
+
+        if(rand < 1)
+        {
+            newObject = GroundVerticalObstacle1PoolerScript.current.GetPooledObject();
+        }
+        else
+        {
+            newObject = GroundVerticalObstacle2PoolerScript.current.GetPooledObject();
+        }
+
+        if (newObject == null) return;
+
+        newObject.transform.position = pos;
+        newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        newObject.SetActive(true);
+
 
 
         //another normal platform to recover from jumping
@@ -468,7 +489,27 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
 
-        //horizontal platform with obstacle...TODO
+        //horizontal platform with obstacle
+        pos = lastPos;
+        pos.x -= size;
+        lastPos = new Vector3(pos.x + 0.2f, pos.y, pos.z);
+
+        int rand = Random.Range(0, 2);
+
+        if (rand < 1)
+        {
+            newObject = GroundVerticalObstacle1PoolerScript.current.GetPooledObject();
+        }
+        else
+        {
+            newObject = GroundVerticalObstacle2PoolerScript.current.GetPooledObject();
+        }
+
+        if (newObject == null) return;
+
+        newObject.transform.position = pos;
+        newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
+        newObject.SetActive(true);
 
 
         //another normal platform to recover from jumping
