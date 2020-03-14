@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class ScoreManagerScript : MonoBehaviour
 {
     public Text scoreText;
+    public Text highScoreText;
     int score;
     public GameObject scoreTextObj;
+    public GameObject panelObj;
+
 
     public static ScoreManagerScript current;
 
@@ -41,8 +44,32 @@ public class ScoreManagerScript : MonoBehaviour
         scoreText.text = score.ToString();
     }
 
+    public void DiamondScore()
+    {
+        score += 10;
+        scoreText.text = score.ToString();
+    }
+
     public void StopScore()
     {
         CancelInvoke("IncrementScore");
+
+        //calculate/record highest score
+        PlayerPrefs.SetInt("score", score);
+
+        if(PlayerPrefs.HasKey("highScore"))
+        {
+            if(score > PlayerPrefs.GetInt("highScore"))
+            {
+                PlayerPrefs.SetInt("highScore", score);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("highScore", score);
+        }
+
+        highScoreText.text = PlayerPrefs.GetInt("highScore").ToString();
+        panelObj.SetActive(true);
     }
 }

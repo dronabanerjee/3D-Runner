@@ -12,6 +12,7 @@ public class PlatformSpawnerScript : MonoBehaviour
     int direction;
     private int counterUp, counterHor;
     float timeForCreation = 0.8f;
+    public GameObject diamond;
     public static PlatformSpawnerScript current;
 
     private void Awake()
@@ -40,6 +41,15 @@ public class PlatformSpawnerScript : MonoBehaviour
 
     }
 
+    void CreateDiamonds (Vector3 pos)
+    {
+        int rand = Random.Range(0, 4);
+        if(rand < 1)
+        {
+            Instantiate(diamond, new Vector3(pos.x, pos.y + 1f, pos.z), diamond.transform.rotation);
+        }
+    }
+
 
     void SpawnInitialVertical()
     {
@@ -55,6 +65,10 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.identity;
         newObject.SetActive(true);
         //newObject.tag = "terrain";
+
+        CreateDiamonds(pos);
+
+
         if (--counterUp <= 0)
         {
             CancelInvoke("SpawnInitialVertical");
@@ -91,6 +105,9 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.identity;
         newObject.SetActive(true);
         //newObject.tag = "terrain";
+
+        CreateDiamonds(pos);
+
         if (--counterUp <= 0)
         {
             CancelInvoke("SpawnVertical");
@@ -143,6 +160,7 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObj.transform.rotation = Quaternion.identity;
         newObj.SetActive(true);
 
+        CreateDiamonds(pos);
 
     }
 
@@ -325,6 +343,8 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
 
+        CreateDiamonds(pos);
+
         if (--counterHor <= 0)
         {
             CancelInvoke("SpawnHorizontalRight");
@@ -363,6 +383,8 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.position = pos;
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
+
+        CreateDiamonds(pos);
 
         if (--counterHor <= 0)
         {
@@ -404,6 +426,7 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
 
+        
 
         pos = lastPos;
         pos.x += size;
@@ -415,6 +438,8 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.position = pos;
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
+
+        CreateDiamonds(pos);
 
         //horizontal platform with obstacle
         pos = lastPos;
@@ -453,6 +478,8 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
 
+        CreateDiamonds(pos);
+
         lastPos = new Vector3(pos.x, pos.y, pos.z);
         //corner that goes up
 
@@ -489,6 +516,8 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
 
+        CreateDiamonds(pos);
+
         //horizontal platform with obstacle
         pos = lastPos;
         pos.x -= size;
@@ -524,6 +553,8 @@ public class PlatformSpawnerScript : MonoBehaviour
         newObject.transform.position = pos;
         newObject.transform.rotation = Quaternion.Euler(0, 90, 0);
         newObject.SetActive(true);
+
+        CreateDiamonds(pos);
 
         lastPos = new Vector3(pos.x - 9.5f, pos.y, pos.z + 1.9f);
         //corner that goes up

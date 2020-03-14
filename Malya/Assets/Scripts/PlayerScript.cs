@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     bool started; //to track if game has started
     bool jumping;
     int turn;
+    public AudioClip diamondFx;
 
     float colHeight, colRadius, colCenterY, colCenterZ;
 
@@ -60,25 +62,33 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            if(SwipeManager.IsSwipingUp())
+            if(!PlatformSpawnerScript.current.gameOver)
             {
-                Jump();
+                if (SwipeManager.IsSwipingUp())
+                {
+                    Jump();
+                }
+                else if (SwipeManager.IsSwipingLeft())
+                {
+                    Debug.Log("left");
+                    TurnLeft();
+                }
+                else if (SwipeManager.IsSwipingRight())
+                {
+                    Debug.Log("Right");
+                    TurnRight();
+                }
+                else if (SwipeManager.IsSwipingDown())
+                {
+                    Debug.Log("Slide");
+                    Slide();
+                }
+
+                float acceleration = Input.acceleration.x * Time.deltaTime;
+                transform.Translate(acceleration, 0, 0);
+
             }
-            else if(SwipeManager.IsSwipingLeft())
-            {
-                Debug.Log("left");
-                TurnLeft();
-            }
-            else if (SwipeManager.IsSwipingRight())
-            {
-                Debug.Log("Right");
-                TurnRight();
-            }
-            else if (SwipeManager.IsSwipingDown())
-            {
-                Debug.Log("Slide");
-                Slide();
-            }
+
         }
 
     }
@@ -182,12 +192,23 @@ public class PlayerScript : MonoBehaviour
         if(other.gameObject.tag == "obstacle")
         {
             animator.SetTrigger("fall1");
+            PlatformSpawnerScript.current.gameOver = true;
             ScoreManagerScript.current.StopScore();
         }
         else if (other.gameObject.tag == "fence")
         {
             animator.SetTrigger("fall2");
+            PlatformSpawnerScript.current.gameOver = true;
             ScoreManagerScript.current.StopScore();
+        }
+        else if(other.gameObject.tag == "diamond")
+        {
+            if(PlatformSpawnerScript.current.gameOver == false)
+            {
+                Destroy(other.gameObject);
+                ScoreManagerScript.current.DiamondScore();
+                AudioManagerScript.current.PlaySound(diamondFx);
+            }
         }
     }
 
@@ -197,6 +218,11 @@ public class PlayerScript : MonoBehaviour
         {
             jumping = false;
         }
+    }
+
+    public void Replay()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
