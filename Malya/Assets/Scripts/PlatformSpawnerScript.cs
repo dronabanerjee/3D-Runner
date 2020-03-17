@@ -1,4 +1,10 @@
-﻿using System.Collections;
+/*
+TODO fix bugs related to gem creation, randomize gem creation
+
+*/
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
