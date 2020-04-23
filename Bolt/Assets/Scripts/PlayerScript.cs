@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 
 /**
- *  The PlayerScript class. Includes all player control and gesture functionalities like jump, turn, sway, etc.
+ *  The PlayerScript class. Includes all player control and gesture functionalities like jump, turn, sway, etc
  */
 public class PlayerScript : MonoBehaviour
 {
