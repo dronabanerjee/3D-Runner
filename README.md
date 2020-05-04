@@ -1,8 +1,11 @@
 # 3D-Runner
-An endless 3D runner game developed using Unity
+An endless 3D runner game developed using Unity and C#
 
-Here's a link to a demo video of the 1st prototype:
-https://youtu.be/ap6Q84UI6r8
+Link to a demo video of the 2nd prototype(latest version): https://youtu.be/_mfd5XSNnlU
 
-Here's a presentaion of the project.
-https://youtu.be/EBoF3gYig0U
+Link to a demo video of the 1st prototype: https://youtu.be/ap6Q84UI6r8
+
+Here's a presentation of the project describing the development process, NUI commands, design methods and team member contributions: https://youtu.be/EBoF3gYig0U
+
+Link to the latest APK:
+https://github.com/dronabanerjee/3D-Runner/blob/Prototype-2/Latest%20APK.zip
